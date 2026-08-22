@@ -5,11 +5,19 @@ export const PokemonReferenceSchema = z.object({
   url: z.url(),
 });
 
-export const PokemonListSchema = z.object({
+export const PokemonListResponseSchema = z.object({
   count: z.number().int().nonnegative(),
   next: z.url().nullable(),
   previous: z.url().nullable(),
   results: z.array(PokemonReferenceSchema),
+});
+
+const PokemonListItemSchema = PokemonReferenceSchema.extend({
+  avatar: z.url(),
+});
+
+export const PokemonListSchema = PokemonListResponseSchema.extend({
+  results: z.array(PokemonListItemSchema),
 });
 
 const PokemonAbilitySchema = z.object({
@@ -47,3 +55,4 @@ export const PokemonDetailsSchema = z.object({
 export type PokemonReference = z.infer<typeof PokemonReferenceSchema>;
 export type PokemonList = z.infer<typeof PokemonListSchema>;
 export type PokemonDetails = z.infer<typeof PokemonDetailsSchema>;
+export type PokemonListItem = z.infer<typeof PokemonListItemSchema>;

@@ -2,9 +2,11 @@ const API_URL = 'https://pokeapi.co/api/v2/pokemon';
 import { getJson } from '@/services/http';
 import {
   PokemonListSchema,
+  PokemonListResponseSchema,
   PokemonDetailsSchema,
 } from '@/schemas/pokemon.schema';
 import type { PokemonList, PokemonDetails } from '@/schemas/pokemon.schema';
+import { getPokemonId, getPokemonImage } from '@/utils/utils';
 
 /**
  * Fetches a list of Pokemon from the PokeAPI.
@@ -17,11 +19,17 @@ export async function getPokemonList(
   page = 1,
   limit = 20,
 ): Promise<PokemonList> {
-  const data: unknown = await getJson(
-    `${API_URL}?offset=${(page - 1) * limit}&limit=${limit}`,
+  const data = PokemonListResponseSchema.parse(
+    await getJson(`${API_URL}?offset=${(page - 1) * limit}&limit=${limit}`),
   );
 
-  return PokemonListSchema.parse(data);
+  return PokemonListSchema.parse({
+    ...data,
+    results: data.results.map((pokemon) => ({
+      ...pokemon,
+      avatar: getPokemonImage(getPokemonId(pokemon.url)),
+    })),
+  });
 }
 
 /**
