@@ -6,12 +6,29 @@ import PageHeader from '@/components/PageHeader';
 import PokemonCard from '@/components/PokemonCard';
 import PokemonCardSkeleton from '@/components/PokemonCardSkeleton';
 import CardsList from '@/components/CardsList';
+import { Navigate, useSearchParams } from 'react-router-dom';
 
 const PAGE_SIZE = 10;
 
 function Home() {
-  const { page } = useValidatedParams(PaginationParamSchema);
+  const [searchParams] = useSearchParams();
+  const params = useValidatedParams(PaginationParamSchema);
 
+  if (!params) return <Navigate to="/" replace />;
+
+  const rawPage = searchParams.get('page');
+
+  if (rawPage !== null && rawPage !== String(params.page)) {
+    const canonicalParams = new URLSearchParams(searchParams);
+    canonicalParams.set('page', String(params.page));
+
+    return <Navigate to={`?${canonicalParams.toString()}`} replace />;
+  }
+
+  return <HomeContent page={params.page} />;
+}
+
+function HomeContent({ page }: { page: number }) {
   const {
     data: pokemonList,
     isPending,
