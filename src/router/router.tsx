@@ -5,11 +5,13 @@ import About from '@/pages/About';
 import Favorites from '@/pages/Favorites';
 import NotFound from '@/pages/NotFound';
 import Pokemon from '@/pages/Pokemon';
+import Error from '@/pages/Error';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
