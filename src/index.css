@@ -135,6 +135,60 @@
   animation: var(--animate-shimmer);
 }
 
+@utility glass-card {
+  border: 1px solid rgb(255 255 255 / 70%);
+  background-color: rgb(255 255 255 / 82%);
+  box-shadow: var(--shadow-ambient);
+  backdrop-filter: blur(12px);
+}
+
+@layer components {
+  .favorite-image-panel {
+    background-color: rgb(168 168 120 / 7%);
+  }
+
+  .favorite-image-panel[data-type='electric'] { background-color: rgb(248 208 48 / 7%); }
+  .favorite-image-panel[data-type='fire'] { background-color: rgb(240 128 48 / 7%); }
+  .favorite-image-panel[data-type='water'] { background-color: rgb(104 144 240 / 7%); }
+  .favorite-image-panel[data-type='grass'] { background-color: rgb(120 200 80 / 7%); }
+  .favorite-image-panel[data-type='ice'] { background-color: rgb(152 216 216 / 8%); }
+  .favorite-image-panel[data-type='fighting'] { background-color: rgb(192 48 40 / 6%); }
+  .favorite-image-panel[data-type='poison'] { background-color: rgb(160 64 160 / 7%); }
+  .favorite-image-panel[data-type='ground'] { background-color: rgb(224 192 104 / 8%); }
+  .favorite-image-panel[data-type='flying'] { background-color: rgb(168 144 240 / 7%); }
+  .favorite-image-panel[data-type='psychic'] { background-color: rgb(248 88 136 / 6%); }
+  .favorite-image-panel[data-type='bug'] { background-color: rgb(168 184 32 / 7%); }
+  .favorite-image-panel[data-type='rock'] { background-color: rgb(184 160 56 / 7%); }
+  .favorite-image-panel[data-type='ghost'] { background-color: rgb(112 88 152 / 7%); }
+  .favorite-image-panel[data-type='dragon'] { background-color: rgb(112 56 248 / 6%); }
+  .favorite-image-panel[data-type='dark'] { background-color: rgb(112 88 72 / 7%); }
+  .favorite-image-panel[data-type='steel'] { background-color: rgb(184 184 208 / 9%); }
+  .favorite-image-panel[data-type='fairy'] { background-color: rgb(238 153 172 / 8%); }
+
+  .type-chip {
+    background-color: rgb(168 168 120 / 15%);
+    color: #77774d;
+  }
+
+  .type-chip[data-type='electric'] { background-color: rgb(248 208 48 / 18%); color: #9b7e00; }
+  .type-chip[data-type='fire'] { background-color: rgb(240 128 48 / 15%); color: #c45f17; }
+  .type-chip[data-type='water'] { background-color: rgb(104 144 240 / 15%); color: #4671d4; }
+  .type-chip[data-type='grass'] { background-color: rgb(120 200 80 / 15%); color: #4e9230; }
+  .type-chip[data-type='ice'] { background-color: rgb(152 216 216 / 20%); color: #398b8b; }
+  .type-chip[data-type='fighting'] { background-color: rgb(192 48 40 / 13%); color: #aa2822; }
+  .type-chip[data-type='poison'] { background-color: rgb(160 64 160 / 15%); color: #873987; }
+  .type-chip[data-type='ground'] { background-color: rgb(224 192 104 / 20%); color: #8b712b; }
+  .type-chip[data-type='flying'] { background-color: rgb(168 144 240 / 18%); color: #745bb8; }
+  .type-chip[data-type='psychic'] { background-color: rgb(248 88 136 / 14%); color: #c93663; }
+  .type-chip[data-type='bug'] { background-color: rgb(168 184 32 / 15%); color: #78850f; }
+  .type-chip[data-type='rock'] { background-color: rgb(184 160 56 / 16%); color: #847124; }
+  .type-chip[data-type='ghost'] { background-color: rgb(112 88 152 / 15%); color: #705898; }
+  .type-chip[data-type='dragon'] { background-color: rgb(112 56 248 / 13%); color: #6330db; }
+  .type-chip[data-type='dark'] { background-color: rgb(112 88 72 / 16%); color: #665043; }
+  .type-chip[data-type='steel'] { background-color: rgb(184 184 208 / 22%); color: #686887; }
+  .type-chip[data-type='fairy'] { background-color: rgb(238 153 172 / 20%); color: #ae6173; }
+}
+
 @utility type-badge-grass {
   background-color: rgb(120 200 80 / 15%);
   color: #78c850;

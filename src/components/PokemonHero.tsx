@@ -4,13 +4,11 @@ import { Heart } from 'lucide-react';
 type Props = {
   image: string | null;
   name: string;
+  isFavorite: boolean;
+  toggleFavorite: () => void;
 };
 
-function PokemonHero({ image, name }: Props) {
-  function addToFavorites() {
-    alert(`${name} was added to your favorites!`);
-  }
-
+function PokemonHero({ image, name, isFavorite, toggleFavorite }: Props) {
   return (
     <div className="group relative flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl border border-outline-variant/50 bg-surface-container-lowest p-lg shadow-[0_4px_20px_rgba(0,0,0,0.03)] lg:col-span-5 lg:min-h-[600px]">
       <div className="absolute inset-0 bg-primary/5" />
@@ -26,13 +24,16 @@ function PokemonHero({ image, name }: Props) {
         </p>
       )}
       <div className="absolute bottom-md right-md z-20">
-        <Button onClick={addToFavorites} variant="favorite">
+        <Button
+          onClick={toggleFavorite}
+          variant={isFavorite ? 'primary' : 'favorite'}
+        >
           <Heart
             aria-hidden="true"
-            className="transition-transform group-hover/favorite:scale-110"
+            className={`transition-transform group-hover/favorite:scale-110 ${isFavorite ? 'fill-current' : ''}`}
             size={18}
           />
-          Add to Favorites
+          {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
         </Button>
       </div>
     </div>
