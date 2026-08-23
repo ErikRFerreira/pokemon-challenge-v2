@@ -1,4 +1,5 @@
 const API_URL = 'https://pokeapi.co/api/v2/pokemon';
+const POKEMON_SEARCH_INDEX_LIMIT = 100_000;
 import { getJson } from '@/services/http';
 import {
   PokemonListSchema,
@@ -32,6 +33,16 @@ export async function getPokemonList(
       avatar: getPokemonImage(getPokemonId(pokemon.url)),
     })),
   });
+}
+
+/**
+ * Fetches the complete Pokemon index used by the global search.
+ *
+ * The response follows the same validation and enrichment path as paginated
+ * Pokemon lists, so consumers only receive schema-validated list items.
+ */
+export async function getPokemonSearchIndex(): Promise<PokemonList> {
+  return getPokemonList(1, POKEMON_SEARCH_INDEX_LIMIT);
 }
 
 /**
