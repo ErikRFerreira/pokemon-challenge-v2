@@ -7,6 +7,10 @@ export function getPokemonImage(id: number): string {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 }
 
+export function formatLabel(value: string): string {
+  return value.replaceAll('-', ' ');
+}
+
 const PAGINATION_SIBLING_COUNT = 1;
 
 export type PaginationItem = number | 'ellipsis';

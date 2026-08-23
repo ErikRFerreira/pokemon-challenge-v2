@@ -3,7 +3,9 @@ import { getJson } from '@/services/http';
 import {
   PokemonListSchema,
   PokemonListResponseSchema,
+  PokemonDetailsResponseSchema,
   PokemonDetailsSchema,
+  PokemonSpeciesSchema,
 } from '@/schemas/pokemon.schema';
 import type { PokemonList, PokemonDetails } from '@/schemas/pokemon.schema';
 import { getPokemonId, getPokemonImage } from '@/utils/utils';
@@ -39,7 +41,17 @@ export async function getPokemonList(
  * @returns - A promise that resolves to a PokemonDetails object containing the fetched Pokemon details.
  */
 export async function getPokemonDetails(name: string): Promise<PokemonDetails> {
-  const data: unknown = await getJson(`${API_URL}/${name}`);
+  const details = PokemonDetailsResponseSchema.parse(
+    await getJson(`${API_URL}/${name}`),
+  );
+  const species = PokemonSpeciesSchema.parse(
+    await getJson(details.species.url),
+  );
+  const description =
+    species.flavor_text_entries
+      .find(({ language }) => language.name === 'en')
+      ?.flavor_text.replace(/\s+/g, ' ')
+      .trim() ?? 'No description is available for this Pokémon.';
 
-  return PokemonDetailsSchema.parse(data);
+  return PokemonDetailsSchema.parse({ ...details, description });
 }

@@ -34,14 +34,12 @@ function HomeContent({ page }: { page: number }) {
     isPending,
     isLoadingError,
     isRefetching,
-    isRefetchError,
     error,
   } = useGetPokemonList(page, PAGE_SIZE);
 
   return (
     <>
       {isRefetching && <p>Updating...</p>}
-      {isRefetchError && <p>Could not refresh: {error.message}</p>}
 
       <PageHeader
         title="Poké Dex"

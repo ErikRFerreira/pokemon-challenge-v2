@@ -7,12 +7,13 @@ type Props = {
 };
 
 function PokemonCard({ pokemon }: Props) {
+  const { name } = pokemon;
   const pokemonId = getPokemonId(pokemon.url);
 
   return (
     <Link
       className="group block overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest shadow-ambient transition-transform duration-300 hover:-translate-y-1"
-      to={`/pokemon/${pokemonId}`}
+      to={`/pokemon/${name}`}
     >
       <div className="relative flex justify-center bg-surface-container/30 px-md pb-md pt-lg">
         <span className="absolute right-sm top-sm font-stats-num text-stats-num text-on-surface-variant/50">

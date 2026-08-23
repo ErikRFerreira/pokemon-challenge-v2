@@ -54,7 +54,7 @@ const PokemonStatSchema = z.object({
  * PokemonDetailsSchema validates the full pokemon detail response from the
  * PokeAPI, combining identity, physical, and gameplay data (abilities, types, stats, sprites).
  */
-export const PokemonDetailsSchema = z.object({
+export const PokemonDetailsResponseSchema = z.object({
   id: z.number().int().positive(),
   name: z.string(),
   height: z.number().int().nonnegative(),
@@ -63,13 +63,38 @@ export const PokemonDetailsSchema = z.object({
   abilities: z.array(PokemonAbilitySchema),
   types: z.array(PokemonTypeSchema),
   stats: z.array(PokemonStatSchema),
+  species: PokemonReferenceSchema,
   sprites: z.object({
     front_default: z.url().nullable(),
     front_shiny: z.url().nullable(),
   }),
 });
 
+export const PokemonSpeciesSchema = z.object({
+  flavor_text_entries: z.array(
+    z.object({
+      flavor_text: z.string(),
+      language: PokemonReferenceSchema,
+    }),
+  ),
+});
+
+export const PokemonFavoriteSchema = z.object({
+  name: z.string(),
+  id: z.number().int().positive(),
+  avatar: z.url(),
+  types: z.array(PokemonTypeSchema),
+});
+
+export const PokemonDetailsSchema = PokemonDetailsResponseSchema.extend({
+  description: z.string(),
+});
+
 export type PokemonReference = z.infer<typeof PokemonReferenceSchema>;
 export type PokemonList = z.infer<typeof PokemonListSchema>;
 export type PokemonDetails = z.infer<typeof PokemonDetailsSchema>;
+export type PokemonDetailsResponse = z.infer<
+  typeof PokemonDetailsResponseSchema
+>;
 export type PokemonListItem = z.infer<typeof PokemonListItemSchema>;
+export type PokemonFavorite = z.infer<typeof PokemonFavoriteSchema>;
