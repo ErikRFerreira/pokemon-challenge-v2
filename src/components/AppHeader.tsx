@@ -4,15 +4,13 @@ import SearchBar from './SearchBar';
 
 function AppHeader() {
   return (
-    <nav className="bg-surface border-b border-outline-variant shadow-sm fixed top-0 w-full z-50 flex justify-between items-center px-lg md:px-xl h-16 bg-surface/80 backdrop-blur-md">
-      <div className="flex items-center justify-between gap-s w-full">
-        <div className="flex items-center gap-xl">
-          <AppLogo />
-          <Navigation />
-        </div>
+    <header className="fixed top-0 z-50 flex h-16 w-full items-center border-b border-outline-variant bg-surface/80 px-md shadow-sm backdrop-blur-md md:px-xl">
+      <div className="flex w-full min-w-0 items-center gap-sm md:gap-xl">
+        <AppLogo />
+        <Navigation />
         <SearchBar />
       </div>
-    </nav>
+    </header>
   );
 }
 

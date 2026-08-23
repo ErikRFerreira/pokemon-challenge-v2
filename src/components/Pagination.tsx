@@ -27,13 +27,16 @@ function Pagination({ page, totalPages }: Props) {
   const pageNumbers = getPaginationRange(page, totalPages);
 
   return (
-    <div className="mt-xl flex justify-center items-center gap-sm">
+    <nav
+      aria-label="Pagination"
+      className="mt-xl flex justify-center items-center gap-sm"
+    >
       <button
         className="px-md py-sm bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-variant transition-colors flex items-center gap-xs disabled:opacity-50 disabled:cursor-not-allowed"
         onClick={() => goToPage(page - 1)}
         disabled={page <= 1}
       >
-        <ChevronLeft size={18} />
+        <ChevronLeft aria-hidden="true" size={18} />
         <span className="font-body-md text-body-md">Previous</span>
       </button>
 
@@ -41,6 +44,7 @@ function Pagination({ page, totalPages }: Props) {
         {pageNumbers.map((pageNumber, index) =>
           pageNumber === 'ellipsis' ? (
             <span
+              aria-hidden="true"
               key={`ellipsis-${index}`}
               className="text-on-surface-variant px-2"
             >
@@ -48,6 +52,7 @@ function Pagination({ page, totalPages }: Props) {
             </span>
           ) : (
             <button
+              aria-current={pageNumber === page ? 'page' : undefined}
               key={pageNumber}
               onClick={() => goToPage(pageNumber)}
               className={
@@ -68,9 +73,9 @@ function Pagination({ page, totalPages }: Props) {
         disabled={page >= totalPages}
       >
         <span className="font-body-md text-body-md">Next</span>
-        <ChevronRight size={18} />
+        <ChevronRight aria-hidden="true" size={18} />
       </button>
-    </div>
+    </nav>
   );
 }
 

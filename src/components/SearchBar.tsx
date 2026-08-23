@@ -129,7 +129,7 @@ function SearchBar() {
 
   return (
     <div
-      className="relative w-[clamp(10rem,36vw,28rem)] shrink-0"
+      className="relative order-2 min-w-0 flex-1 md:order-3 md:ml-auto md:w-[clamp(10rem,36vw,28rem)] md:flex-none"
       onBlur={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) {
           setIsOpen(false);
@@ -175,7 +175,7 @@ function SearchBar() {
 
       {showDropdown && (
         <div
-          className="absolute right-0 top-full z-[60] mt-sm w-full min-w-72 overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest shadow-xl"
+          className="fixed left-md right-md top-16 z-[60] mt-sm overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest shadow-xl md:absolute md:left-auto md:right-0 md:top-full md:w-full md:min-w-72"
           id={RESULTS_ID}
           role="listbox"
         >
