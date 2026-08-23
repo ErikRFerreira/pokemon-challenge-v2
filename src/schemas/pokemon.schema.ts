@@ -91,10 +91,12 @@ export const PokemonDetailsSchema = PokemonDetailsResponseSchema.extend({
 });
 
 export type PokemonReference = z.infer<typeof PokemonReferenceSchema>;
+export type PokemonListResponse = z.infer<typeof PokemonListResponseSchema>;
 export type PokemonList = z.infer<typeof PokemonListSchema>;
 export type PokemonDetails = z.infer<typeof PokemonDetailsSchema>;
 export type PokemonDetailsResponse = z.infer<
   typeof PokemonDetailsResponseSchema
 >;
+export type PokemonSpecies = z.infer<typeof PokemonSpeciesSchema>;
 export type PokemonListItem = z.infer<typeof PokemonListItemSchema>;
 export type PokemonFavorite = z.infer<typeof PokemonFavoriteSchema>;
