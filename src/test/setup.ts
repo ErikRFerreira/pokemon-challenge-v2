@@ -1,3 +1,5 @@
+import '@testing-library/jest-dom/vitest';
+import { cleanup } from '@testing-library/react';
 import { afterAll, afterEach, beforeAll } from 'vitest';
 import { server } from './server';
 
@@ -9,10 +11,8 @@ beforeAll(() => {
 });
 
 afterEach(() => {
-  // Remove React components rendered by the previous test.
-  //cleanup();
-
-  // Remove request behavior added by an individual test.
+  cleanup();
+  localStorage.clear();
   server.resetHandlers();
 });
 
